@@ -1,5 +1,6 @@
 using Content.Goobstation.Common.StationReport;
 using Content.Server.GameTicking;
+using Content.Server.GameTicking.Events;
 using Content.Shared.Paper;
 using Robust.Shared.Prototypes;
 
@@ -8,11 +9,18 @@ namespace Content.Goobstation.Server.StationReportSystem;
 public sealed class StationReportSystem : EntitySystem
 {
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!; // Omu
+    private int _roundId; // Omu: round number in Discord reports
 
     public override void Initialize()
     {
         //subscribes to the endroundevent
+        SubscribeLocalEvent<RoundStartingEvent>(OnRoundStarted);
         SubscribeLocalEvent<RoundEndTextAppendEvent>(OnRoundEndTextAppend);
+    }
+
+    private void OnRoundStarted(RoundStartingEvent ev) // Omu: Store round number for later
+    {
+        _roundId = ev.Id;
     }
 
     private void OnRoundEndTextAppend(RoundEndTextAppendEvent args)
@@ -39,6 +47,6 @@ public sealed class StationReportSystem : EntitySystem
     public void BroadcastStationReport(string? stationReportText)
     {
         RaiseNetworkEvent(new StationReportEvent(stationReportText));//to send to client
-        RaiseLocalEvent(new StationReportEvent(stationReportText));//to send to discord intergration
+        RaiseLocalEvent(new StationReportEvent($"{stationReportText}{Environment.NewLine}-# Round {_roundId}"));//to send to discord intergration // Omu: Add round number
     }
 }
