@@ -1,23 +1,23 @@
 station-report-text =
                                             STATION REPORT
     ----------------------------------------------------------------------------------------------
-    NTR please fill out this report of the station, failure to do so will result in a fine.
-    Failure to delete all explaination text will also result in a fine.
+    This form is to be filled out by the NanoTrasen Representative.
+    Failure to fill in this report or delete this explanation text will result in a pay cut.
     ----------------------------------------------------------------------------------------------
     • [bold]Command Departmental Report[/bold]
-    >[mono][/mono]
+    > [italics][/italics]
     • [bold]Security Departmental Report[/bold]
-    >[mono][/mono]
+    > [italics][/italics]
     • [bold]Cargo Departmental Report[/bold]
-    >[mono][/mono]
+    > [italics][/italics]
     • [bold]Engineering Departmental Report[/bold]
-    >[mono][/mono]
+    > [italics][/italics]
     • [bold]Medical Departmental Report[/bold]
-    >[mono][/mono]
+    > [italics][/italics]
     • [bold]Science Departmental Report[/bold]
-    >[mono][/mono]
+    > [italics][/italics]
     • [bold]Service Departmental Report[/bold]
-    >[mono][/mono]
+    > [italics][/italics]
     • [bold]Silicon Report[/bold]
-    >[mono][/mono]
+    > [italics][/italics]
     signed, [color=Green]NTR name here[/color]
