@@ -44,7 +44,7 @@ public sealed class StationReportSystem : EntitySystem
                 foreach (var stamp in paper.StampedBy)
                 {
                     if (Loc.TryGetString(stamp.StampedName, out var name))
-                        stationReportText += $"[color={stamp.StampedColor.ToHex()}]⟦{name}⟧[/color] ";
+                        stationReportText += $"[color={stamp.StampedColor.ToHexNoAlpha()}]⟦{name}⟧[/color] ";
                 }
             }
             break;
