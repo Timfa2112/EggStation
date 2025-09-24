@@ -2,7 +2,7 @@
   name: dislippler
   parent: [WeaponDisablerPractice, BaseSyndicateContraband]
   id: WeaponDislippler
-  description: Standard-issue security disabler on HONK Co. stations. Ultimate proof that God has abandoned us.
+  description: Standard-issue security disabler on Honk! Co. stations. Ultimate proof that God has abandoned us.
   components:
     - type: Gun
       fireRate: 3
