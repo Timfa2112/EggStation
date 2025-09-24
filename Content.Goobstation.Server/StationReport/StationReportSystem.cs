@@ -36,6 +36,17 @@ public sealed class StationReportSystem : EntitySystem
                 return;
 
             stationReportText = paper.Content;
+
+            // Omu: Add stamps
+            if (paper.StampedBy.Count > 0)
+            {
+                stationReportText += $"{Environment.NewLine}{Environment.NewLine}Stamps:{Environment.NewLine}";
+                foreach (var stamp in paper.StampedBy)
+                {
+                    if (Loc.TryGetString(stamp.StampedName, out var name))
+                        stationReportText += $"[color={stamp.StampedColor.ToHex()}]⟦{name}⟧[/color] ";
+                }
+            }
             break;
         }
 
