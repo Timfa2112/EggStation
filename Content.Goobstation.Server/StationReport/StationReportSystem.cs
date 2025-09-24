@@ -8,7 +8,6 @@ namespace Content.Goobstation.Server.StationReportSystem;
 public sealed class StationReportSystem : EntitySystem
 {
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!; // Omu
-    [Dependency] private readonly ILocalizationManager _localizationManager = default!; // Omu
 
     public override void Initialize()
     {
@@ -32,7 +31,7 @@ public sealed class StationReportSystem : EntitySystem
             break;
         }
 
-        if(stationReportText != _localizationManager.GetString(reportDefaultFormLoc)) // Omu: Don't send a report that hasn't been filled in
+        if(stationReportText != Loc.GetString(reportDefaultFormLoc)) // Omu: Don't send a report that hasn't been filled in
             BroadcastStationReport(stationReportText);
     }
 
