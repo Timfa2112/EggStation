@@ -17,7 +17,7 @@ public sealed class StationReportSystem : EntitySystem
 
     private void OnRoundEndTextAppend(RoundEndTextAppendEvent args)
     {
-        var reportDefaultFormLoc = ((PaperComponent) _prototypeManager.Index("NanoRepStationReport").Components["paper"].Component).Content; // Omu: Don't send a report that hasn't been filled in
+        var reportDefaultFormLoc = ((PaperComponent) _prototypeManager.Index("NanoRepStationReport").Components["Paper"].Component).Content; // Omu: Don't send a report that hasn't been filled in
 
         //locates the first entity with StationReportComponent then stops
         string? stationReportText = null;
