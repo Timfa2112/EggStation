@@ -1,14 +1,14 @@
-using Content.Server.GameTicking;
 using Content.Goobstation.Common.StationReport;
+using Content.Server.GameTicking;
 using Content.Shared.Paper;
-using Robust.Shared.GameObjects;
+using Robust.Shared.Prototypes;
 
 namespace Content.Goobstation.Server.StationReportSystem;
 
 public sealed class StationReportSystem : EntitySystem
 {
-
-    //this is shitcode?
+    [Dependency] private readonly IPrototypeManager _prototypeManager = default!; // Omu
+    [Dependency] private readonly ILocalizationManager _localizationManager = default!; // Omu
 
     public override void Initialize()
     {
@@ -18,18 +18,22 @@ public sealed class StationReportSystem : EntitySystem
 
     private void OnRoundEndTextAppend(RoundEndTextAppendEvent args)
     {
+        var reportDefaultFormLoc = ((PaperComponent) _prototypeManager.Index("NanoRepStationReport").Components["paper"].Component).Content; // Omu: Don't send a report that hasn't been filled in
+
         //locates the first entity with StationReportComponent then stops
         string? stationReportText = null;
         var query = EntityQueryEnumerator<StationReportComponent>();
         while (query.MoveNext(out var uid, out var tablet))//finds the first entity with stationreport
         {
             if (!TryComp<PaperComponent>(uid, out var paper))
-               return;
-            
+                return;
+
             stationReportText = paper.Content;
             break;
         }
-        BroadcastStationReport(stationReportText);
+
+        if(stationReportText != _localizationManager.GetString(reportDefaultFormLoc)) // Omu: Don't send a report that hasn't been filled in
+            BroadcastStationReport(stationReportText);
     }
 
     //sends a networkevent to tell the client to update the stationreporttext when recived
