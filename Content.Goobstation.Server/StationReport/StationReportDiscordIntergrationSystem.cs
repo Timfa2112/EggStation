@@ -85,9 +85,7 @@ public sealed class StationReportDiscordIntergrationSystem : EntitySystem
                 // 1) Prefer a newline
                 var splitAt = text.LastIndexOf('\n', end - 1, take);
                 if (splitAt >= start)
-                {
                     end = splitAt + 1; // include the newline
-                }
                 else
                 {
                     // 2) Prefer sentence boundary (". ", "! ", "? ", "… ")
@@ -104,17 +102,13 @@ public sealed class StationReportDiscordIntergrationSystem : EntitySystem
                     }
     
                     if (bestBoundary >= start)
-                    {
                         end = bestBoundary;
-                    }
                     else
                     {
                         // 3) Fall back to last whitespace
                         var lastSpace = text.LastIndexOf(' ', end - 1, take);
                         if (lastSpace >= start)
-                        {
                             end = lastSpace + 1;
-                        }
                         // 4) Otherwise, hard cut at end (avoid infinite loop)
                     }
                 }
@@ -130,7 +124,16 @@ public sealed class StationReportDiscordIntergrationSystem : EntitySystem
     {
         if (string.IsNullOrWhiteSpace(message) || string.IsNullOrWhiteSpace(_webhookUrl))
             return;
-    
+        //var payload = new { content = message };
+        //var json = System.Text.Json.JsonSerializer.Serialize(payload);
+        //var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+        //try
+        //{
+        //    var response = await client.PostAsync(_webhookUrl, content);
+        //    response.EnsureSuccessStatusCode();
+        //}
+        //catch (Exception)
         foreach (var chunk in SplitDiscordMessage(message, DiscordSoftLimit)) // Omu - avoid hitting the Discord character limit of 200 by splitting up the payload
         {
             var payload = new { content = chunk };
