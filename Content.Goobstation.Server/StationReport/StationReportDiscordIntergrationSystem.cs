@@ -45,7 +45,7 @@ public sealed class StationReportDiscordIntergrationSystem : EntitySystem
         new(@">", @"\>"), // Omu, escape > so it doesn't unintentionally quoteblock stuff in Discord
         // End of Discord markdown replacements, other stuff can come AFTER this.
         new(@"\[/?bold\]", @"**"),
-        new(@"\[/?italic\]", @"_"),
+        new(@"\[/?italics\]", @"_"), // Omu, fix the 's' that was forgotten in 'italicS'
         new(@"\[/?mono\]", @"__"),
         // new(@">", @""), // Omu, was causing issues with > escaping in the Discord markdown block
         new(@"\[h1\]", @""), // Omu, make head be replaced with empty, was # 
