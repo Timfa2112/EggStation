@@ -45,7 +45,7 @@ public sealed class StationReportDiscordIntergrationSystem : EntitySystem
         new(@"\[/?bold\]", @"**"),
         new(@"\[/?italic\]", @"_"),
         new(@"\[/?mono\]", @"__"),
-        new(@">", @""),
+        // new(@">", @""), // Omu, was causing issues with > escaping in the Discord markdown block
         new(@"\[h1\]", @""), // Omu, make head be replaced with empty, was # 
         new(@"\[h2\]", @""), // Omu, make head be replaced with empty, was ## 
         new(@"\[h3\]", @""), // Omu, make head be replaced with empty, was ###
