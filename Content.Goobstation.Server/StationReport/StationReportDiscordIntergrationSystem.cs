@@ -58,7 +58,7 @@ public sealed class StationReportDiscordIntergrationSystem : EntitySystem
         new(@"\[head=3\]", @""), // Omu, make head be replaced with empty, was ### 
         new(@"\[head=4\]", @""), // Omu, make head be replaced with empty, was -# 
         new(@"\[/head\]", @""),
-        new(@"\[/?color(=[#0-9a-zA-Z]+)?\]", @"")
+        new(@"\[/?color=?([#0-9a-zA-Z]+)?\]", @"") // Omu, fix colour tag regex
     };
 
     private void OnStationReportReceived(StationReportEvent ev)
