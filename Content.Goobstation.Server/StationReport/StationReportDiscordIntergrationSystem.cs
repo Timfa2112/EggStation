@@ -44,6 +44,11 @@ public sealed class StationReportDiscordIntergrationSystem : EntitySystem
         new(@"#", @"\#"), // Omu, escape # so it doesn't unintentionally header stuff in Discord
         new(@">", @"\>"), // Omu, escape > so it doesn't unintentionally quoteblock stuff in Discord
         // End of Discord markdown replacements, other stuff can come AFTER this.
+        // Omu: filter out empty tags
+		new(@"\[bold\] *\[/bold\]", @""),
+        new(@"\[italics\] *\[/italics\]", @""),
+        new(@"\[mono\] *\[/mono\]", @""),
+		//Omu: end empty tags
         new(@"\[/?bold\]", @"**"),
         new(@"\[/?italics\]", @"_"), // Omu, fix the 's' that was forgotten in 'italicS'
         new(@"\[/?mono\]", @"__"),
